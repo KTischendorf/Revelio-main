@@ -1,0 +1,25 @@
+name: 'Close stale issues, PRs, and branches'
+on:
+  schedule:
+    - cron: '30 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          stale-issue-message: 'No comment in recent history, this is likely stale. Will close if not updated.'
+          stale-pr-message: 'No comment in recent history, this is likely stale. Will close if not updated.'
+
+  remove-stale-branches:
+    name: Remove Stale Branches
+    runs-on: ubuntu-latest
+    steps:
+      - uses: fpicalausa/remove-stale-branches@v1.6.0
+        with:
+          dry-run: false
+          days-before-branch-stale: 3
+          days-before-branch-delete: 7
+          exempt-branches-regex: ^(main|master|gh-pages)$

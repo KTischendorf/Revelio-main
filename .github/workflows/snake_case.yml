@@ -1,0 +1,46 @@
+name: Check File Names
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
+      - main
+
+jobs:
+  check_snake_case:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: pip install --upgrade pip PyGithub
+
+    - name: Run snake case check
+      id: snake_case_check
+      run: |
+        python presubmits/snake_case.py | tee result.txt
+
+    - name: Post comment on PR
+      if: github.event_name == 'pull_request'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_EVENT_PATH: ${{ github.event_path }}
+      run: python presubmits/post_snake_comment.py
+
+    - name: Report status
+      run: |
+        if grep -q "Invalid names found:" result.txt; then
+          exit 1
+        fi

@@ -1,0 +1,38 @@
+name: Documentation Freshness
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight UTC
+  workflow_dispatch: # Allows manual triggering
+
+permissions:
+  contents: write
+
+jobs:
+  check-markdown:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: pip install datetime
+
+      - name: Run script to check markdown files
+        run: python presubmits/check_freshness.py
+
+      - name: Commit changes
+        run: |
+          git config --global user.name 'Freshness Bot 🍃'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Adding freshness warning to outdated markdown files"
+          git push origin main
+        if: success()

@@ -1,0 +1,416 @@
+metadata:
+# Add **either** a phone or url for each team. If both are placed, the url will be used in the RACI chart.
+  phone:
+    JX: "+15555554444"
+    ICS: "+12225553333"
+  url:
+    JX: "https://example.com/jx"
+    ICS: "https://example.com/foo/team/ics_rocks"
+
+raci:
+  "Public Cloud Implementation Responsibilities":
+    "Change Management Process":
+      R:
+        - name: "JX"
+
+      A:
+        - name: "JX"
+      C:
+      I:
+    "Configuration Management":
+      R:
+        - name: "Cloud Infrastructure"
+        - name: "TS - Database Operations"
+      A:
+        - name: "Cloud Infrastructure"
+      C:
+        - name: "JX"
+      I:
+    "User Access Control (IAM - Authorization) - GCP Project":
+      R:
+        - name: "Cloud Infrastructure"
+      A:
+        - name: "JX"
+      C:
+      I:
+    "User Access Control (IAM - Authorization) - JX Active Directory":
+      R:
+        - name: "ICS - Identity Management"
+      A:
+        - name: "ICS - Identity Management"
+      C:
+        - name: "JX"
+      I:
+    "User Access Control (IAM - Authorization) - JX AD - Management of Computer Accts":
+      R:
+        - name: "JX"
+      A:
+        - name: "JX"
+      C:
+      I:
+    "User Account Management (IAM - Authentication)":
+      R:
+        - name: "ICS - Identity Management"
+      A:
+        - name: "JX"
+      C:
+        - name: "ICS - Network Security"
+      I:
+    "Environment Inventory":
+      R:
+        - name: "Cloud Infrastructure"
+      A:
+        - name: "JX"
+      C:
+      I:
+    "Multi-Factor Authentication/Two-Factor Authentication non provider portal":
+      R:
+        - name: "ICS - Identity Management"
+      A:
+        - name: "ICS - Identity Management"
+      C:
+      I:
+    "Vulnerability Scanning":
+      R:
+        - name: "ICS TVM"
+      A:
+        - name: "Cloud Infrastructure"
+      C:
+      I:
+    "Security Event Logging":
+      R:
+        - name: "ERO - Observability Operations"
+      A:
+        - name: "ERO - Observability Operations"
+      C:
+      I:
+    "Security Event Monitoring":
+      R:
+        - name: "ERO - Fusion Center"
+      A:
+        - name: "ERO - Fusion Center"
+      C:
+      I:
+    "Event Monitoring":
+      R:
+        - name: "JX"
+      A:
+        - name: "JX"
+      C:
+        - name: "ERO - Continuity Operations"
+      I:
+    "Event Management":
+      R:
+        - name: "JX"
+      A:
+        - name: "JX"
+      C:
+        - name: "ERO - Event Management"
+      I:
+        - name: "ERO - Continuity Operations"
+    "Problem Management":
+      R:
+        - name: "JX"
+      A:
+        - name: "JX"
+      C:
+        - name: "ERO - Event Management"
+      I:
+        - name: "ERO - Continuity Operations"
+    "Business Continuity and Disaster Recovery":
+      R:
+        - name: "JX"
+      A:
+        - name: "JX"
+      C:
+        - name: "Cloud Infrastructure"
+        - name: "ERO - Continuity Operations"
+      I:
+        - name: "ERO - Event Management"
+    "Post-Event Assessment / Continuous Improvement Process":
+      R:
+        - name: "JX"
+      A:
+        - name: "JX"
+    "Cloud Configuration Management":
+      R:
+        - name: "JX"
+      A:
+        - name: "JX"
+      C:
+      I:  
+    "Regulatory Compliance and Standards Monitoring":
+      R:
+      A:
+      C:
+      I:
+    "PCI Compliance":
+      R:
+        - name: "JX"
+      A:
+        - name: "Corporate Compliance Team"
+      C:
+      I:
+    "Event monitoring and Response":
+      R:
+        - name: "ERO - Fusion Center"
+      A:
+        - name: "ERO - Fusion Center"
+      C:
+      I:
+    "Network Access Control (Access List)":
+      R:
+        - name: "JX"
+      A:
+        - name: "Cloud Infrastructure"
+      C:
+      I:  
+    "Network Perimeter Protection (firewall/IPS, NGFW)":
+      R:
+        - name: "JX"
+      A:
+        - name: "Cloud Infrastructure"
+      C:
+      I:  
+    "Network Perimeter Protection (Web Application Firewall/Application Delivery Controller)":
+      R:
+        - name: "JX"
+      A:
+        - name: "Cloud Infrastructure"
+      C:
+      I:  
+    "Outbound Internet Access":
+      R:
+        - name: "JX"
+      A:
+        - name: "Cloud Infrastructure"
+      C:
+      I:  
+    "DDOS Prevention":
+      R:
+        - name: "JX"
+      A:
+        - name: "Cloud Infrastructure"
+      C:
+      I:  
+    "Patching Process - scheduling & deploying the patches":
+      R:
+        - name: "JX"
+      A:
+        - name: "JX"
+      C:
+      I:  
+    "Deploying Patching Code/Infrastructure":
+      R:
+        - name: "Cloud Infrastructure"
+      A:
+        - name: "Cloud Infrastructure"
+      C:
+        - name: "JX"
+      I:  
+    "Anti-virus/Anti-malware System":
+      R:
+        - name: "ICS-Systems Security"
+      A:
+        - name: "ICS-Systems Security"
+      C:
+      I:  
+    "Encryption-In-Transit":
+      R:
+        - name: "Cloud Infrastructure"
+      A:
+        - name: "JX"
+      C:
+        - name: "ICS - Network Security"
+      I:  
+    "Encryption-At-Rest":
+      R:
+        - name: "JX"
+      A:
+        - name: "JX"
+      C:
+        - name: "Cloud Infrastructure"
+        - name: "ICS - Data Security"
+      I:  
+    "OS Backups":
+      R:
+        - name: "Cloud Infrastructure"
+      A:
+        - name: "Cloud Infrastructure"
+      C:
+        - name: "JX"
+      I:
+        - name: "JX"
+    "Database Backups":
+      R:
+        - name: "TS - Database Operations"
+      A:
+        - name: "TS - Database Operations"
+      C:
+        - name: "JX"
+      I:
+        - name: "JX"
+    "OS Health Monitoring":
+      R:
+        - name: "Cloud Infrastructure"
+      A:
+        - name: "JX"
+      C:
+        - name: "JX"
+      I:
+    "Data Loss Prevention":
+      R:
+        - name: "Cloud Infrastructure"
+        - name: "TS - Database Operations"
+      A:
+        - name: "JX"
+      C:
+        - name: "ICS - Data Security"
+      I:
+    "Secrets Management (Platform)":
+      R:
+        - name: "Cloud Infrastructure"
+      A:
+        - name: "Cloud Infrastructure"
+      C:
+        - name: "JHA Server Operations"
+      I:
+    "Secrets Management (Application Secrets, rotation policies etc.)":
+      R:
+        - name: "JX"
+      A:
+        - name: "JX"
+      C:
+        - name: "Cloud Infrastructure"
+        - name: "JHA Server Operations"
+      I:
+    "Operating System Images":
+      R:
+        - name: "Cloud Infrastructure"
+      A:
+        - name: "JX"
+      C:
+      I:
+    "Virtual Machine Deployment":
+      R:
+        - name: "Cloud Infrastructure"
+      A:
+        - name: "JX"
+      C:
+      I:
+    "Operating System Configuration Management":    
+      R:
+        - name: "Cloud Infrastructure"
+      A:
+        - name: "JX"
+      C:
+      I:
+    "Database Instance Configuration":
+      R:
+        - name: "TS - Database Operations"
+      A:
+        - name: "JX"
+      C:
+      I:
+    "IP address Management":
+      R:
+        - name: "Cloud Infrastructure"
+      A:
+        - name: "Cloud Infrastructure"
+      C:
+      I:
+    "Network Routing and Peering":
+      R:
+        - name: "Cloud Infrastructure"
+      A:
+        - name: "Cloud Infrastructure"
+      C:
+      I:
+    "Virtual Network deployment/management":
+      R:
+        - name: "Cloud Infrastructure"
+      A:
+        - name: "Cloud Infrastructure"
+      C:
+      I:
+  "Cloud Infrastructure Managed":
+    "Multi-Factor Authentication for Provider Portal":
+      R:
+        - name: "ICS - Identity Management"
+      A:
+        - name: "ICS - Identity Management"
+      C:
+      I:
+    "Dedicated Connection to Jack Henry locations (Express Route/Direct Connect/Interconnect etc)": 
+      R:
+        - name: "ICS - Cloud Infrastructure"
+      A:
+        - name: "ICS - Cloud Infrastructure"
+      C:
+        - name: "TS - Network Infrastructure"
+      I:
+    "Subscription / Account / Project Management":
+      R:
+        - name: "ICS - Cloud Infrastructure"
+      A:
+        - name: "ICS - Cloud Infrastructure"
+      C:
+      I:
+    "jConnect":
+      R:
+        - name: "ICS - Cloud Infrastructure"
+      A:
+        - name: "ICS - Cloud Infrastructure"
+      C:
+      I:
+    "CIP (Common Infrastructure Platform) Connectivity":
+      R:
+        - name: "ICS - Cloud Infrastructure"
+      A:
+        - name: "ICS - Cloud Infrastructure"
+      C:
+      I:
+  "App Team":
+    "Application Logging":
+      R:
+        - name: "JX"
+      A:
+        - name: "JX"
+      C:
+      I:
+    "Application Monitoring":
+      R:
+        - name: "JX"
+      A:
+        - name: "JX"
+      C:
+      I:
+    "Application Deployment":
+      R:
+        - name: "JX"
+      A:
+        - name: "JX"
+      C:
+      I:
+    "Application Authorization":
+      R:
+        - name: "JX"
+      A:
+        - name: "JX"
+      C:
+      I:
+    "External Customer Authentication":
+      R:
+        - name: "JX"
+      A:
+        - name: "JX"
+      C:
+      I: 
+    "Application Vulnerability Scanning":
+      R:
+        - name: "JX"
+      A:
+        - name: "JX"
+      C:
+        - name: "ICS - Identity Management"
+      I:

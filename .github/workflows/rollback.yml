@@ -1,0 +1,66 @@
+name: Create Rollback
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit_head:
+        description: 'Enter the commit head to rollback to'
+        required: true
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Explicitly fetch all refs
+        run: git fetch --all
+
+      - name: Validate commit head
+        run: |
+          if ! git cat-file -e "${{ github.event.inputs.commit_head }}"; then
+            echo "::error::Commit head ${{ github.event.inputs.commit_head }} is invalid."
+            exit 1
+          fi
+
+      - name: Create rollback branch and revert commits
+        run: |
+          git checkout -b rollback-${{ github.run_id }}
+          git config user.email "github-actions@github.com"
+          git config user.name "GitHub Actions"
+
+          commit_list=$(git log --reverse --pretty=format:"%H" ${{ github.event.inputs.commit_head }}..HEAD)
+
+          for commit in $commit_list; do
+            if git cat-file -t $commit | grep -q commit; then
+              if [[ $(git rev-list --parents -n 1 $commit | awk '{print NF}') -gt 2 ]]; then # Check if it's a merge commit
+                echo "Reverting merge commit: $commit"
+                git revert -m 1 $commit # Revert merge commit using parent 1 (you may need to adjust this)
+              else
+                echo "Reverting commit: $commit"
+                git revert $commit
+              fi
+            fi
+          done
+
+      - name: Push rollback branch
+        run: git push -u origin rollback-${{ github.run_id }}
+
+      - name: Create Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/${{ github.repository }}/pulls \
+          -d '{
+            "title":"Rollback to commit ${{ github.event.inputs.commit_head }}",
+            "body":"This PR rolls back the repository to commit ${{ github.event.inputs.commit_head }}. Please review before merging.",
+            "head":"rollback-${{ github.run_id }}",
+            "base":"main",
+            "reviewers": ["skarczjh", "vstokes"]
+          }'

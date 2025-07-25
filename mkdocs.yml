@@ -1,0 +1,99 @@
+---
+
+site_name: Jack Henry Documentation
+repo_url: https://github.com/jkhy/revelio
+edit_uri: edit/main/docs/
+theme:
+  name: material
+  logo: jh.png
+  favicon: jh.png
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
+    admonition:
+      note: fontawesome/solid/note-sticky
+      abstract: fontawesome/solid/book
+      info: fontawesome/solid/circle-info
+      tip: fontawesome/solid/bullhorn
+      success: fontawesome/solid/check
+      question: fontawesome/solid/circle-question
+      warning: fontawesome/solid/triangle-exclamation
+      failure: fontawesome/solid/bomb
+      danger: fontawesome/solid/skull
+      bug: fontawesome/solid/robot
+      example: fontawesome/solid/flask
+      quote: fontawesome/solid/quote-left
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - content.action.edit
+    - content.code.copy
+    - content.code.select
+    - navigation.path
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js
+extra_css:
+  - extra.css
+  - https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css
+plugins:
+  - auto-refresh-build-pages:
+      update_message: "The page has been updated. Do you want to reload?"
+      yes_button_text: "Yes"
+      no_button_text: "No"
+      check_interval_seconds: 90
+  - drawio-exporter
+  - git-authors
+  - git-revision-date-localized:
+      type: date
+      locale: en
+      fallback_to_build_date: false
+      enable_creation_date: false
+      enabled: true
+      strict: true
+  - kroki:
+      FileTypes:
+        - png
+        - svg
+      FileTypeOverrides:
+        mermaid: svg
+  - search:
+     pipeline:
+       - stemmer
+       - stopWordFilter
+       - trimmer
+  - open-in-new-tab
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.blocks.caption
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.extra:
+      pymdownx.superfences:
+        custom_fences:
+          - name: mermaid
+            class: mermaid
+            format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets

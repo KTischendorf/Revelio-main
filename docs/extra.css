@@ -1,0 +1,11 @@
+.not-fresh {
+    border: 2px solid red;
+    padding: 10px;
+    background-color: #ffe6e6;
+}
+
+.fresh {
+    border: 2px solid green;
+    padding: 10px;
+    background-color: #e6ffe6;
+}

@@ -1,0 +1,77 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Replication-based files
+*.bak
+*.tmp
+*.old
+*.swp
+*.swo
+*.swn
+*.log
+
+# Node.js dependencies
+node_modules/
+
+# Python dependencies
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+
+# Java dependencies
+*.class
+*.jar
+*.war
+*.ear
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Backup files
+*.bak
+*.old
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Other
+*.lock
+*.env
+*.local
+*.test
+*.spec
+*.bak
+*.swp
+*.swo
+*.swn
+*.log

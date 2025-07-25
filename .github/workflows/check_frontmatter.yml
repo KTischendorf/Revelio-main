@@ -1,0 +1,58 @@
+name: Check Front Matter
+
+on:
+  pull_request:
+    paths:
+      - '**/*.md'
+
+jobs:
+  check-front-matter:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0  # Fetch all history for all branches and tags
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        pip install pyyaml
+        pip install PyGithub
+
+    - name: List changed files
+      id: changed-files
+      run: |
+        BASE_SHA=$(git merge-base origin/${{ github.event.pull_request.base.ref }} ${{ github.sha }})
+        echo "PR_FILES=$(git diff --name-only $BASE_SHA ${{ github.sha }} | tr '\n' ',')" >> $GITHUB_ENV
+
+    - name: Check if there are markdown files
+      id: check-md-files
+      run: |
+        if [[ ! "${{ env.PR_FILES }}" == *".md"* ]]; then
+          echo "No markdown files to check."
+          exit 0
+        fi
+
+    - name: Check frontmatter
+      id: front_matter_check
+      run: |
+        python presubmits/check_frontmatter.py | tee result.txt
+
+    - name: Post comment on PR
+      if: github.event_name == 'pull_request'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_EVENT_PATH: ${{ github.event_path }}
+      run: python presubmits/post_frontmatter_comment.py
+
+    - name: Report status
+      run: |
+        if grep -q "missing front matter" result.txt; then
+          exit 1
+        fi

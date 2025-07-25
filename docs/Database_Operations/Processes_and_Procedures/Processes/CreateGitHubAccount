@@ -1,0 +1,42 @@
+---
+author: "Justin West"
+date: "2025-02-12"
+description: "Process Guide"
+tags: ["DBops", "Database Operations", "Process Guide", "GitHub"]
+---
+
+# Creating GitHub Accounts for New Team Members
+
+## Description
+This outlines the process to obtain a github account, attach it to the jkhy org and provide subsequent access to departmental specific teams.  This document will not be visible to someone without GitHub access but can be exported or copied out to the individual.
+
+## Process
+1. Obtain a GitHub account (Personal or dedicated to JH)
+    **NOTE:** If you already have a GitHub account that you'd like to use, skip to step 2
+
+   * Navigate to [github](www.github.com)
+   * Enter an email and click "Sign up for GitHub"
+   * Follow directions to choose username
+   * Check email and activate account
+
+2. Setup two-factor authentication
+    * Login to GitHub with your account
+    * Choose Profile Icon->Settings->Password and authentication
+    * Under Two-factor authentication choose a method and configure
+    * Save your recovery codes to a password vault!
+     
+2. Associate GitHub account to jkhy org
+    * Submit a [jhnow](https://jhnow.service-now.com/esc?id=sc_cat_item&table=sc_cat_item&sys_id=8b23353c470965d0365e3e48436d4386&searchTerm=github) Azure DevOps & GitHub request.
+    * Type of Request = GitHub Access
+    * Type of Access = General GitHub Access
+    * Users who requires access = "Requestors name"
+    * GitHub ID = ID from Step 1
+    * GitHub Organization = jkhy
+  
+3. Accept Invite to jkhy org
+   * Upon approval and subsequent case completion, an email is generated from noreply@github.com to the requestor.
+   * Click the link to accept the request.
+  
+4. Add to GitHub team
+    * Each team in github is managed by department specific resources.  Please get with your manager or team lead to determine how to get added to the specific team roles you need.
+     
