@@ -1,7 +1,7 @@
 ---
 title: "ACI CLI Helpful Commands"
 author: "Krystal Tischendorf"
-date: "2025-25-07"
+date: "2025-07-25"
 description: "Quick reference for common ACI CLI commands."
 tags: ["network", "ACI", "cheatsheet", "commands"]
 ---
